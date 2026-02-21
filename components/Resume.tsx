@@ -1,10 +1,7 @@
 import React from 'react';
-import { Download,} from 'lucide-react';
-const Resume: React.FC = () => {
-  const handlePrint = () => {
-    window.print();
-  };
 
+const Resume: React.FC = () => {
+  
   return (
     <section id="resume" className="py-20 bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
