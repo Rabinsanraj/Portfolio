@@ -1,11 +1,21 @@
-import React from 'react';
-import { ArrowRight, Download, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
-import HeroImage1 from "../assets/HeroImage1.jpeg"
+import React from "react";
+import {
+  ArrowRight,
+  Download,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import { CONTACT_INFO } from "../constants";
+import HeroImage1 from "../assets/HeroImage1.jpeg";
 
 const Hero: React.FC = () => {
   return (
-    <section id="about" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-950">
+    <section
+      id="about"
+      className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-950"
+    >
       {/* Background decoration */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-900 opacity-20 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-violet-900 opacity-20 blur-3xl"></div>
@@ -17,16 +27,22 @@ const Hero: React.FC = () => {
               <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2 animate-pulse"></span>
               Available for immediate joining
             </div>
-            
+
             <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-              <span className="block xl:inline">Hi, I'm {CONTACT_INFO.name}</span>
-              <span className="block text-primary mt-2">Full Stack Developer</span>
+              <span className="block xl:inline">
+                Hi, I'm {CONTACT_INFO.name}
+              </span>
+              <span className="block text-primary mt-2">
+                Full Stack Developer
+              </span>
             </h1>
-            
+
             <p className="mt-6 text-base text-slate-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-            Transforming ideas into scalable web applications by building responsive, high-performance platforms using React, Python, FastAPI, and MongoDB.
+              Transforming ideas into scalable web applications by building
+              responsive, high-performance platforms using React, Python,
+              FastAPI, and MongoDB.
             </p>
-            
+
             <div className="mt-6 flex flex-wrap gap-4 text-slate-400 text-sm font-medium sm:justify-center lg:justify-start">
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-primary" />
@@ -57,20 +73,22 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-4 lg:flex lg:items-center">
-             <div className="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-800 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-               <div className="rounded-xl overflow-hidden bg-slate-900 aspect-[4/6] relative">
-                  <img 
-                    src={HeroImage1} 
-                    alt="Rabinsan Raj A" 
-                    className="object-cover w-full h-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                    <p className="text-white font-bold text-lg">{CONTACT_INFO.name}</p>
-                  </div>
-               </div>
-             </div>
+            <div className="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-800 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="rounded-xl overflow-hidden bg-slate-900 aspect-[4/6] relative">
+                <img
+                  src={HeroImage1}
+                  alt="Rabinsan Raj A"
+                  className="object-cover w-full h-full"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                  <p className="text-white font-bold text-lg">
+                    {CONTACT_INFO.name}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
