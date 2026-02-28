@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
             </h1>
             
             <p className="mt-6 text-base text-slate-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-              Transforming ideas into scalable web applications. Over 6 months+ of experience building responsive platforms with React, Python, FastAPI, and MongoDB.
+            Transforming ideas into scalable web applications by building responsive, high-performance platforms using React, Python, FastAPI, and MongoDB.
             </p>
             
             <div className="mt-6 flex flex-wrap gap-4 text-slate-400 text-sm font-medium sm:justify-center lg:justify-start">
@@ -61,13 +61,12 @@ const Hero: React.FC = () => {
              <div className="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-800 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
                <div className="rounded-xl overflow-hidden bg-slate-900 aspect-[4/6] relative">
                   <img 
-                    src="../ResumeAndImage/HeroImage1.jpeg" 
+                    src="/ResumeAndImage/HeroImage1.jpeg" 
                     alt="Rabinsan Raj A" 
                     className="object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                     <p className="text-white font-bold text-lg">{CONTACT_INFO.name}</p>
-                    <p className="text-purple-300 text-sm">6 Months+ Experience</p>
                   </div>
                </div>
              </div>

@@ -4,7 +4,6 @@ export interface ExperienceItem {
   id: number;
   company: string;
   role: string;
-  duration: string;
   type: string;
   location: string;
   description: string[];

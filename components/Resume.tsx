@@ -17,7 +17,7 @@ const Resume: React.FC = () => {
         {/* Resume PDF Embed */}
         <div className="bg-slate shadow-2xl rounded-lg overflow-hidden print:shadow-none print:rounded-none border border-slate-800">
           <iframe
-            src="../ResumeAndImage/Rabinsan_ResumeC.pdf" 
+            src="/ResumeAndImage/Rabinsan_ResumeC.pdf" 
             className="w-full h-[800px] md:h-[1200px] print:h-auto"
             title="Resume PDF"
           />

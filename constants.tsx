@@ -6,7 +6,6 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     id: 1,
     company: "Aroganam Technologies",
     role: "Full Stack Developer",
-    duration: "6+ Months",
     type: "Full-time",
     location: "Coimbatore",
     description: [
@@ -21,7 +20,6 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     id: 2,
     company: "Vetri Technology Solutions",
     role: "Frontend Development Intern",
-    duration: "6+ Months",
     type: "Internship",
     location: "Surandai",
     description: [
