@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
+import ResumePdf from "../assets/Rabinsan_ResumeC.pdf";
 
 const Resume: React.FC = () => {
-  
   return (
     <section id="resume" className="py-20 bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@ const Resume: React.FC = () => {
         {/* Resume PDF Embed */}
         <div className="bg-slate shadow-2xl rounded-lg overflow-hidden print:shadow-none print:rounded-none border border-slate-800">
           <iframe
-            src="/ResumeAndImage/Rabinsan_ResumeC.pdf" 
+            src={ResumePdf}
             className="w-full h-[800px] md:h-[1200px] print:h-auto"
             title="Resume PDF"
           />

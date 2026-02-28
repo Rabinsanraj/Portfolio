@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Download, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
+import HeroImage1 from "../assets/HeroImage1.jpeg"
 
 const Hero: React.FC = () => {
   return (
@@ -61,7 +62,7 @@ const Hero: React.FC = () => {
              <div className="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-800 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
                <div className="rounded-xl overflow-hidden bg-slate-900 aspect-[4/6] relative">
                   <img 
-                    src="../ResumeAndImage/HeroImage1.jpeg" 
+                    src={HeroImage1} 
                     alt="Rabinsan Raj A" 
                     className="object-cover w-full h-full"
                   />
