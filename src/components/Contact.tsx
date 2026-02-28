@@ -4,6 +4,8 @@ import { CONTACT_INFO } from "../constants";
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
   const [showPopup, setShowPopup] = useState(false);
   const [highlight, setHighlight] = useState(false);
 
@@ -13,9 +15,16 @@ const Contact: React.FC = () => {
 
   const handleOkClick = () => {
     setShowPopup(false);
+
+    // Scroll smoothly to contact info
+    contactRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    // Add glow
     setHighlight(true);
 
-    // Remove glow after 5 seconds
     setTimeout(() => {
       setHighlight(false);
     }, 5000);
@@ -27,7 +36,7 @@ const Contact: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
             {/* LEFT SIDE */}
-            <div>
+            <div ref={contactRef}>
               <h2 className="text-3xl font-extrabold text-white mb-6">
                 Let's Connect
               </h2>
@@ -42,9 +51,9 @@ const Contact: React.FC = () => {
                 {/* EMAIL */}
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className={`flex items-center group transition-all duration-500 ${
+                  className={`flex items-center transition-all duration-500 ${
                     highlight
-                      ? "drop-shadow-[0_0_4px_rgba(700,85,247,0.9)]"
+                      ? "drop-shadow-[0_0_10px_rgba(200,85,247,0.95)]"
                       : ""
                   }`}
                 >
@@ -59,9 +68,9 @@ const Contact: React.FC = () => {
                 {/* PHONE */}
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                  className={`flex items-center group transition-all duration-500 ${
+                  className={`flex items-center transition-all duration-500 ${
                     highlight
-                      ? "drop-shadow-[0_0_4px_rgba(700,85,247,0.9)]"
+                      ? "drop-shadow-[0_0_10px_rgba(200,85,247,0.95)]"
                       : ""
                   }`}
                 >
