@@ -43,6 +43,7 @@ const Experience: React.FC = () => {
                         {job.company}
                       </div>
                       <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+
                         <div className="flex items-center">
                           <MapPin size={14} className="mr-1" />
                           {job.location}

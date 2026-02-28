@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
              <div className="relative mx-auto w-full rounded-2xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-800 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
                <div className="rounded-xl overflow-hidden bg-slate-900 aspect-[4/6] relative">
                   <img 
-                    src="/ResumeAndImage/HeroImage1.jpeg" 
+                    src="../ResumeAndImage/HeroImage1.jpeg" 
                     alt="Rabinsan Raj A" 
                     className="object-cover w-full h-full"
                   />
