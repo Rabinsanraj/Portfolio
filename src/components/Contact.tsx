@@ -5,9 +5,20 @@ import { CONTACT_INFO } from "../constants";
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [highlight, setHighlight] = useState(false);
 
   const handleFieldFocus = () => {
     setShowPopup(true);
+  };
+
+  const handleOkClick = () => {
+    setShowPopup(false);
+    setHighlight(true);
+
+    // Remove glow after 5 seconds
+    setTimeout(() => {
+      setHighlight(false);
+    }, 5000);
   };
 
   return (
@@ -28,9 +39,14 @@ const Contact: React.FC = () => {
               </p>
 
               <div className="space-y-6">
+                {/* EMAIL */}
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="flex items-center group"
+                  className={`flex items-center group transition-all duration-500 ${
+                    highlight
+                      ? "drop-shadow-[0_0_4px_rgba(700,85,247,0.9)]"
+                      : ""
+                  }`}
                 >
                   <div className="h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center">
                     <Mail className="h-5 w-5 text-primary" />
@@ -40,9 +56,14 @@ const Contact: React.FC = () => {
                   </span>
                 </a>
 
+                {/* PHONE */}
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                  className="flex items-center group"
+                  className={`flex items-center group transition-all duration-500 ${
+                    highlight
+                      ? "drop-shadow-[0_0_4px_rgba(700,85,247,0.9)]"
+                      : ""
+                  }`}
                 >
                   <div className="h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center">
                     <Phone className="h-5 w-5 text-primary" />
@@ -52,6 +73,7 @@ const Contact: React.FC = () => {
                   </span>
                 </a>
 
+                {/* LOCATION */}
                 <div className="flex items-center">
                   <div className="h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center">
                     <MapPin className="h-5 w-5 text-primary" />
@@ -126,7 +148,7 @@ const Contact: React.FC = () => {
         </div>
       </footer>
 
-      {/* POPUP MODAL */}
+      {/* POPUP */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
           <div className="bg-slate-900 rounded-xl p-6 w-[90%] max-w-md border border-slate-700 text-center">
@@ -138,7 +160,7 @@ const Contact: React.FC = () => {
               email.
             </p>
             <button
-              onClick={() => setShowPopup(false)}
+              onClick={handleOkClick}
               className="px-6 py-2 bg-primary hover:bg-violet-700 text-white rounded-md transition-colors"
             >
               OK
