@@ -82,10 +82,7 @@ const Hero: React.FC = () => {
                   alt="Rabinsan Raj A"
                   className="object-cover w-full h-full"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                  <p className="text-white font-bold text-lg">
-                    {CONTACT_INFO.name}
-                  </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent flex flex-col justify-end p-6">
                 </div>
               </div>
             </div>
