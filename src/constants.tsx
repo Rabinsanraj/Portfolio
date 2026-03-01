@@ -43,7 +43,7 @@ export const PROJECT_DATA: ProjectItem[] = [
     techStack: ["React.js", "HTML/CSS", "BootStrap"],
     verified: true,
     image: "https://picsum.photos/seed/car/800/600",
-    path: "https://google.com",
+    path: "https://rabinsanraj.github.io/Car-Rental/",
   },
   {
     id: 2,
