@@ -1,12 +1,19 @@
 import React from "react";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Briefcase, MapPin } from "lucide-react";
 import { EXPERIENCE_DATA } from "../constants";
 
 const Experience: React.FC = () => {
   return (
     <section id="experience" className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Career Path
           </h2>
@@ -17,7 +24,7 @@ const Experience: React.FC = () => {
             Proven track record of delivering scalable solutions in verified
             roles.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Vertical line */}
@@ -25,16 +32,23 @@ const Experience: React.FC = () => {
 
           <div className="space-y-12">
             {EXPERIENCE_DATA.map((job, index) => (
-              <div
-                key={job.id}
-                className={`relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""} items-center md:items-start`}
-              >
+              <motion.div 
+              key={job.id} 
+              initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`relative flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center md:items-start`}
+            >
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4 border-slate-900 bg-primary shadow-sm z-10 mt-1.5"></div>
 
                 {/* Content Card */}
                 <div className="ml-12 md:ml-0 md:w-1/2 px-4 md:px-8 w-full">
-                  <div className="bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-800 hover:shadow-md transition-all duration-300">
+                <motion.div 
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    className="bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-800 hover:shadow-xl hover:border-purple-500/30 transition-all duration-300"
+                  >
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
                       <h3 className="text-lg font-bold text-white">
                         {job.role}
@@ -68,9 +82,9 @@ const Experience: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

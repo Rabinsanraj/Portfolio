@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from "lucide-react";
 import { CONTACT_INFO } from "../constants";
 
@@ -36,7 +37,12 @@ const Contact: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
             {/* LEFT SIDE */}
-            <div ref={contactRef}>
+            <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6 }}
+          >
               <h2 className="text-3xl font-extrabold text-white mb-6">
                 Let's Connect
               </h2>
@@ -49,38 +55,28 @@ const Contact: React.FC = () => {
 
               <div className="space-y-6">
                 {/* EMAIL */}
-                <a
-                  href={`mailto:${CONTACT_INFO.email}`}
-                  className={`flex items-center transition-all duration-500 ${
-                    highlight
-                      ? "drop-shadow-[0_0_10px_rgba(200,85,247,0.95)]"
-                      : ""
-                  }`}
-                >
-                  <div className="h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <span className="ml-4 text-slate-400">
-                    {CONTACT_INFO.email}
-                  </span>
-                </a>
+                <motion.a 
+                whileHover={{ x: 10 }}
+                href={`mailto:${CONTACT_INFO.email}`} 
+                className="flex items-center group"
+              >
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
+                  <Mail className="h-5 w-5 text-primary" />
+                </div>
+                <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">{CONTACT_INFO.email}</span>
+              </motion.a>
 
                 {/* PHONE */}
-                <a
-                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                  className={`flex items-center transition-all duration-500 ${
-                    highlight
-                      ? "drop-shadow-[0_0_10px_rgba(200,85,247,0.95)]"
-                      : ""
-                  }`}
-                >
-                  <div className="h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <span className="ml-4 text-slate-400">
-                    {CONTACT_INFO.phone}
-                  </span>
-                </a>
+                <motion.a 
+                whileHover={{ x: 10 }}
+                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
+                className="flex items-center group"
+              >
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
+                  <Phone className="h-5 w-5 text-primary" />
+                </div>
+                <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">{CONTACT_INFO.phone}</span>
+              </motion.a>
 
                 {/* LOCATION */}
                 <div className="flex items-center">
@@ -92,10 +88,16 @@ const Contact: React.FC = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* RIGHT SIDE FORM */}
-            <div className="bg-slate-900 rounded-2xl p-8 border border-slate-800">
+            <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6 }}
+            className="bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-xl"
+          >
               <h3 className="text-lg font-bold text-white mb-6">
                 Send a Message
               </h3>
@@ -136,15 +138,16 @@ const Contact: React.FC = () => {
                   />
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setShowPopup(true)}
-                  className="w-full py-2 px-4 rounded-md text-white bg-primary hover:bg-violet-700 transition-colors"
-                >
+                <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300"
+              >
                   Send Message
-                </button>
+                </motion.button>
               </form>
-            </div>
+            </motion.div>
           </div>
 
           {/* FOOTER */}

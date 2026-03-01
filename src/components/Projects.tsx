@@ -1,12 +1,40 @@
 import React from "react";
-import { ExternalLink, Github, CheckCircle } from "lucide-react";
+import { motion } from 'framer-motion';
+import { ExternalLink, CheckCircle } from "lucide-react";
 import { PROJECT_DATA } from "../constants";
 
 const Projects: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
   return (
     <section id="projects" className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Portfolio
           </h2>
@@ -17,14 +45,22 @@ const Projects: React.FC = () => {
             A selection of verified projects demonstrating full stack
             capabilities.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+        >
           {PROJECT_DATA.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
-            >
+           <motion.div 
+           key={project.id} 
+           variants={itemVariants}
+           whileHover={{ y: -10 }}
+           className="group bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden hover:shadow-2xl hover:border-purple-500/30 transition-all duration-500 flex flex-col"
+         >
               <div className="h-48 w-full bg-slate-800 relative overflow-hidden">
                 <img
                   src={project.image}
@@ -74,15 +110,20 @@ const Projects: React.FC = () => {
 
                   <div>
                     {project.path ? (
-                      <a
-                        href={project.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-primary hover:bg-violet-700 transition-colors"
-                      >
-                        <ExternalLink size={16} className="mr-2" />
+                      <motion.button 
+                      href={project.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-primary hover:bg-violet-700 transition-colors"
+                    >
+                       <ExternalLink size={16} className="mr-2" />
                         Live Demo
-                      </a>
+                     
+                    </motion.button>
+                      
+                       
                     ) : (
                       <div className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-slate-400 bg-slate-800 border border-slate-700 cursor-not-allowed">
                         🚧 Live demo not available — Project in progress
@@ -91,9 +132,9 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
