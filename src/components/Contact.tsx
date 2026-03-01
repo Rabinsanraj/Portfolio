@@ -6,11 +6,12 @@ import { CONTACT_INFO } from "../constants";
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const emailRef = useRef<HTMLAnchorElement>(null);
+  const highlightTimeoutRef = useRef<NodeJS.Timeout>();
 
   const [showPopup, setShowPopup] = useState(false);
   const [highlight, setHighlight] = useState(false);
 
-  const handleFieldFocus = () => {
+  const showUnavailablePopup = () => {
     setShowPopup(true);
   };
 
@@ -23,12 +24,24 @@ const Contact: React.FC = () => {
       block: "center",
     });
 
-    // Trigger glow
+    // Clear any existing timeout to avoid conflicts
+    if (highlightTimeoutRef.current) {
+      clearTimeout(highlightTimeoutRef.current);
+    }
+
+    // Trigger glow effect
     setHighlight(true);
 
-    setTimeout(() => {
+    highlightTimeoutRef.current = setTimeout(() => {
       setHighlight(false);
+      highlightTimeoutRef.current = undefined;
     }, 2000);
+  };
+
+  // Prevent actual form submission and show popup instead
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    showUnavailablePopup();
   };
 
   return (
@@ -115,13 +128,13 @@ const Contact: React.FC = () => {
                 Send a Message
               </h3>
 
-              <form ref={formRef} className="space-y-4">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm text-slate-300">Name</label>
                   <input
                     type="text"
                     readOnly
-                    onFocus={handleFieldFocus}
+                    onFocus={showUnavailablePopup}
                     className="mt-1 w-full cursor-pointer rounded-md border border-slate-700 bg-slate-800 py-2 px-3 text-white"
                     placeholder="Your Name"
                   />
@@ -132,7 +145,7 @@ const Contact: React.FC = () => {
                   <input
                     type="email"
                     readOnly
-                    onFocus={handleFieldFocus}
+                    onFocus={showUnavailablePopup}
                     className="mt-1 w-full cursor-pointer rounded-md border border-slate-700 bg-slate-800 py-2 px-3 text-white"
                     placeholder="you@example.com"
                   />
@@ -145,7 +158,7 @@ const Contact: React.FC = () => {
                   <textarea
                     rows={4}
                     readOnly
-                    onFocus={handleFieldFocus}
+                    onFocus={showUnavailablePopup}
                     className="mt-1 w-full cursor-pointer rounded-md border border-slate-700 bg-slate-800 py-2 px-3 text-white"
                     placeholder="How can I help you?"
                   />

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { ExternalLink, CheckCircle } from "lucide-react";
 import { PROJECT_DATA } from "../constants";
 
@@ -25,10 +25,11 @@ const Projects: React.FC = () => {
       },
     },
   };
+
   return (
     <section id="projects" className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -47,7 +48,7 @@ const Projects: React.FC = () => {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -55,12 +56,12 @@ const Projects: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
         >
           {PROJECT_DATA.map((project) => (
-           <motion.div 
-           key={project.id} 
-           variants={itemVariants}
-           whileHover={{ y: -10 }}
-           className="group bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden hover:shadow-2xl hover:border-purple-500/30 transition-all duration-500 flex flex-col"
-         >
+            <motion.div
+              key={project.id}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+              className="group bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden hover:shadow-2xl hover:border-purple-500/30 transition-all duration-500 flex flex-col"
+            >
               <div className="h-48 w-full bg-slate-800 relative overflow-hidden">
                 <img
                   src={project.image}
@@ -110,20 +111,17 @@ const Projects: React.FC = () => {
 
                   <div>
                     {project.path ? (
-                      <motion.button 
-                      href={project.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-primary hover:bg-violet-700 transition-colors"
-                    >
-                       <ExternalLink size={16} className="mr-2" />
+                      <motion.a
+                        href={project.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-primary hover:bg-violet-700 transition-colors"
+                      >
+                        <ExternalLink size={16} className="mr-2" />
                         Live Demo
-                     
-                    </motion.button>
-                      
-                       
+                      </motion.a>
                     ) : (
                       <div className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-slate-400 bg-slate-800 border border-slate-700 cursor-not-allowed">
                         🚧 Live demo not available — Project in progress
