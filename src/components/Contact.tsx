@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { CONTACT_INFO } from "../constants";
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
+  const emailRef = useRef<HTMLAnchorElement>(null);
 
   const [showPopup, setShowPopup] = useState(false);
   const [highlight, setHighlight] = useState(false);
@@ -17,13 +17,13 @@ const Contact: React.FC = () => {
   const handleOkClick = () => {
     setShowPopup(false);
 
-    // Scroll smoothly to contact info
-    contactRef.current?.scrollIntoView({
+    // Scroll to email section smoothly
+    emailRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
 
-    // Add glow
+    // Trigger glow
     setHighlight(true);
 
     setTimeout(() => {
@@ -38,11 +38,11 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
             {/* LEFT SIDE */}
             <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6 }}
-          >
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6 }}
+            >
               <h2 className="text-3xl font-extrabold text-white mb-6">
                 Let's Connect
               </h2>
@@ -55,28 +55,41 @@ const Contact: React.FC = () => {
 
               <div className="space-y-6">
                 {/* EMAIL */}
-                <motion.a 
-                whileHover={{ x: 10 }}
-                href={`mailto:${CONTACT_INFO.email}`} 
-                className="flex items-center group"
-              >
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
-                  <Mail className="h-5 w-5 text-primary" />
-                </div>
-                <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">{CONTACT_INFO.email}</span>
-              </motion.a>
+                <motion.a
+                  ref={emailRef}
+                  whileHover={{ x: 10 }}
+                  href={`mailto:${CONTACT_INFO.email}?subject=Portfolio%20Inquiry&body=Hi%20${CONTACT_INFO.name},%0A%0AI%20would%20like%20to%20connect%20with%20you.`}
+                  className={`flex items-center group transition-all duration-500 ${
+                    highlight
+                      ? "shadow-[0_0_25px_rgba(139,92,246,0.9)] scale-105 rounded-lg p-2"
+                      : ""
+                  }`}
+                >
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">
+                    {CONTACT_INFO.email}
+                  </span>
+                </motion.a>
 
                 {/* PHONE */}
-                <motion.a 
-                whileHover={{ x: 10 }}
-                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
-                className="flex items-center group"
-              >
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">{CONTACT_INFO.phone}</span>
-              </motion.a>
+                <motion.a
+                  whileHover={{ x: 10 }}
+                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                  className={`flex items-center group transition-all duration-500 ${
+                    highlight
+                      ? "shadow-[0_0_25px_rgba(139,92,246,0.9)] scale-105 rounded-lg p-2"
+                      : ""
+                  }`}
+                >
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-900/50 transition-colors">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="ml-4 text-slate-400 group-hover:text-primary transition-colors">
+                    {CONTACT_INFO.phone}
+                  </span>
+                </motion.a>
 
                 {/* LOCATION */}
                 <div className="flex items-center">
@@ -91,13 +104,13 @@ const Contact: React.FC = () => {
             </motion.div>
 
             {/* RIGHT SIDE FORM */}
-            <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6 }}
-            className="bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-xl"
-          >
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6 }}
+              className="bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-xl"
+            >
               <h3 className="text-lg font-bold text-white mb-6">
                 Send a Message
               </h3>
@@ -139,11 +152,11 @@ const Contact: React.FC = () => {
                 </div>
 
                 <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300"
-              >
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-700 transition-all duration-300"
+                >
                   Send Message
                 </motion.button>
               </form>
