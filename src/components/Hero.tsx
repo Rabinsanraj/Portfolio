@@ -8,7 +8,7 @@ import {
   Phone,
 } from "lucide-react";
 import { CONTACT_INFO } from "../constants";
-import HeroImage1 from "../assets/HeroImage1.jpeg";
+import HeroImage1 from "../assets/HeroImage1.png";
 
 const Hero: React.FC = () => {
   return (
